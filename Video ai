@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIDEOMAX AI</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#090d19;color:white;
+ font-family:Arial,sans-serif;padding:20px;
+}
+.container{max-width:700px;margin:auto}
+header{text-align:center;padding:30px 10px}
+h1{color:#8b7cff;font-size:32px}
+.card{
+ background:#151c30;padding:20px;
+ border-radius:16px;margin:15px 0;
+ border:1px solid #293451;
+}
+textarea,select{
+ width:100%;padding:14px;margin:10px 0;
+ background:#0b1222;color:white;
+ border:1px solid #38466a;border-radius:10px;
+ font-size:15px;
+}
+button{
+ width:100%;padding:15px;border:0;
+ border-radius:10px;background:#7562ff;
+ color:white;font-size:16px;font-weight:bold;
+}
+#hasil{white-space:pre-wrap;line-height:1.6}
+small{color:#aab4ca}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>🎬 VIDEOMAX AI</h1>
+<p>Asisten Pribadi Pembuat Video AI</p>
+<small>Ide • Naskah • Storyboard • Prompt Video</small>
+</header>
+
+<div class="card">
+<h3>🎥 Buat Konten Video</h3>
+
+<label>Tema video</label>
+<textarea id="tema" rows="3"
+placeholder="Contoh: Komedi tentang kehidupan orang Ambon..."></textarea>
+
+<label>Jenis konten</label>
+<select id="jenis">
+<option>Komedi</option>
+<option>Romantis</option>
+<option>Motivasi Islami</option>
+<option>Horor</option>
+<option>Sejarah</option>
+<option>Drama</option>
+<option>Edukasi</option>
+</select>
+
+<label>Bahasa</label>
+<select id="bahasa">
+<option>Bahasa Indonesia</option>
+<option>Dialek Ambon</option>
+<option>Bahasa Indonesia baku</option>
+</select>
+
+<label>Durasi</label>
+<select id="durasi">
+<option>40 detik</option>
+<option>1 menit</option>
+<option>3 menit</option>
+<option>5 menit</option>
+</select>
+
+<button onclick="buatVideo()">✨ BUAT KONSEP VIDEO</button>
+</div>
+
+<div class="card">
+<h3>📝 Hasil Kreasi</h3>
+<div id="hasil">Hasil konsep video akan muncul di sini.</div>
+<button onclick="salin()">📋 SALIN HASIL</button>
+</div>
+</div>
+
+<script>
+function buatVideo(){
+ const tema=document.getElementById('tema').value.trim();
+ const jenis=document.getElementById('jenis').value;
+ const bahasa=document.getElementById('bahasa').value;
+ const durasi=document.getElementById('durasi').value;
+
+ if(!tema){
+ alert('Silakan masukkan tema video!');
+ return;
+ }
+
+ const hasil=`VIDEOMAX AI
+JENIS: ${jenis}
+TEMA: ${tema}
+BAHASA: ${bahasa}
+DURASI: ${durasi}
+
+1. JUDUL VIDEO
+Buat judul menarik berdasarkan tema.
+
+2. PEMBUKA
+Buat pembukaan yang menarik perhatian penonton.
+
+3. NASKAH
+Buat cerita lengkap sesuai tema, jenis konten dan bahasa yang dipilih.
+
+4. STORYBOARD
+Bagi video menjadi beberapa adegan sesuai durasi.
+
+5. PROMPT VISUAL
+Buat prompt gambar dan video AI untuk setiap adegan.
+
+6. PENUTUP
+Buat penutup yang berkesan dan ajakan berinteraksi.
+
+Catatan: Ini adalah template konsep. Hubungkan API AI untuk menghasilkan naskah otomatis.`;
+
+ document.getElementById('hasil').textContent=hasil;
+}
+
+function salin(){
+ const teks=document.getElementById('hasil').innerText;
+ navigator.clipboard.writeText(teks)
+ .then(()=>alert('Berhasil disalin!'))
+ .catch(()=>alert('Silakan salin teks secara manual.'));
+}
+</script>
+</body>
+</html>
