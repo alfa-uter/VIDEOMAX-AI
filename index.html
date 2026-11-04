@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIDEOMAX AI</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080d19;color:#fff;
+ font-family:Arial,sans-serif;
+}
+header{
+ padding:20px;background:#101a2e;
+ display:flex;justify-content:space-between;
+ align-items:center;border-bottom:1px solid #26344d;
+}
+.logo{font-size:22px;font-weight:bold;color:#66aaff}
+.logo span{color:#b77aff}
+.container{max-width:900px;margin:auto;padding:22px}
+.hero{text-align:center;padding:35px 5px}
+.hero h1{font-size:34px;margin-bottom:10px}
+.hero p{color:#a8b4ca;line-height:1.6}
+.card{
+ background:#111c30;border:1px solid #293954;
+ border-radius:15px;padding:20px;margin-bottom:18px;
+}
+h2{font-size:19px}
+label{display:block;margin:15px 0 8px;color:#c8d5e9}
+textarea,select,input{
+ width:100%;padding:13px;border-radius:9px;
+ border:1px solid #344762;background:#091323;
+ color:white;font-size:15px;
+}
+textarea{height:120px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{
+ border:0;border-radius:10px;padding:14px;
+ font-weight:bold;cursor:pointer;
+}
+.generate{
+ width:100%;margin-top:20px;
+ background:linear-gradient(90deg,#287cff,#9b50ed);
+ color:white;font-size:16px;
+}
+.secondary{background:#263751;color:white}
+.menu{display:flex;gap:8px;flex-wrap:wrap}
+.menu button{flex:1;min-width:100px}
+.menu button.active{background:#347fff;color:white}
+.preview{
+ min-height:190px;background:#080d19;
+ border:1px dashed #425777;border-radius:12px;
+ display:flex;align-items:center;justify-content:center;
+ text-align:center;color:#8294b1;padding:20px;
+}
+footer{text-align:center;padding:25px;color:#8290a8;font-size:12px}
+.small{font-size:12px;color:#91a1ba;line-height:1.6}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">VIDEO<span>MAX</span> AI</div>
+ <div>☰</div>
+</header>
+
+<div class="container">
+
+<section class="hero">
+ <h1>Create Your Imagination</h1>
+ <p>Ubah ide dan gambar menjadi video menggunakan
+ kecerdasan buatan.</p>
+</section>
+
+<div class="card">
+ <h2>🎬 AI Video Generator</h2>
+ <div class="menu">
+  <button class="active" onclick="mode('text',this)">Text to Video</button>
+  <button class="secondary" onclick="mode('image',this)">Image to Video</button>
+ </div>
+
+ <label>Deskripsikan video yang ingin dibuat</label>
+ <textarea id="prompt" placeholder="Contoh: Seorang pria berjalan di tengah hutan saat matahari terbenam, cinematic, realistic..."></textarea>
+
+ <div id="upload" style="display:none">
+  <label>Unggah gambar referensi</label>
+  <input type="file" id="image" accept="image/*">
+ </div>
+
+ <div class="grid">
+  <div>
+   <label>Rasio video</label>
+   <select id="ratio">
+    <option value="9:16">Portrait 9:16</option>
+    <option value="16:9">Landscape 16:9</option>
+    <option value="1:1">Square 1:1</option>
+   </select>
+  </div>
+  <div>
+   <label>Gaya video</label>
+   <select id="style">
+    <option>Cinematic</option>
+    <option>Realistic</option>
+    <option>Anime</option>
+    <option>Documentary</option>
+    <option>Fantasy</option>
+   </select>
+  </div>
+ </div>
+
+ <label>Durasi video</label>
+ <select id="duration">
+  <option>5 detik</option>
+  <option>10 detik</option>
+  <option>20 detik</option>
+ </select>
+
+ <button class="generate" onclick="generate()">
+  ✨ GENERATE VIDEO AI
+ </button>
+ <p class="small">Mesin AI GPU belum terhubung. Generator akan diaktifkan setelah backend selesai dipasang.</p>
+</div>
+
+<div class="card">
+ <h2>🖼️ Preview Video</h2>
+ <div class="preview" id="preview">
+  Video yang dihasilkan akan muncul di sini.
+ </div>
+</div>
+
+<div class="card">
+ <h2>📁 Menu Utama</h2>
+ <div class="grid">
+  <button class="secondary">🎞️ My Projects</button>
+  <button class="secondary">🖼️ AI Image</button>
+  <button class="secondary">📚 Storyboard</button>
+  <button class="secondary">📥 Riwayat Video</button>
+ </div>
+</div>
+
+</div>
+
+<footer>
+ VIDEOMAX AI © 2026<br>
+ Create Your Imagination Into Reality
+</footer>
+
+<script>
+let currentMode="text";
+
+function mode(type,button){
+ currentMode=type;
+ document.querySelectorAll(".menu button").forEach(b=>{
+  b.className="secondary";
+ });
+ button.className="active";
+ document.getElementById("upload").style.display=
+  type==="image"?"block":"none";
+}
+
+function generate(){
+ const prompt=document.getElementById("prompt").value.trim();
+ if(!prompt){
+  alert("Masukkan deskripsi video terlebih dahulu.");
+  return;
+ }
+ alert("Tampilan berhasil! Mesin AI GPU akan dihubungkan pada tahap backend.");
+}
+</script>
+</body>
+</html>
